@@ -1,0 +1,54 @@
+version: '3'
+services:
+  node1:
+    image: mongo:3.2
+    hostname: node1
+    expose:
+      - '27017'
+    volumes:
+      - ./node1:/data/db
+    restart: always
+    entrypoint: [ '/usr/bin/mongod', '--shardsvr', '--port', '27017' ]
+  node2:
+    image: mongo:3.2
+    hostname: node2
+    expose:
+      - '27017'
+    volumes:
+      - ./node2:/data/db
+    restart: always
+    entrypoint: [ '/usr/bin/mongod', '--shardsvr', '--port', '27017' ]
+  config1:
+    image: mongo:3.2
+    hostname: config1
+    expose:
+      - '27017'
+    volumes:
+      - ./config:/data/configdb
+    restart: always
+    entrypoint: [ '/usr/bin/mongod', '--configsvr', '--port', '27017' ]
+  mongos1:
+    image: mongo:3.2
+    hostname: mongos1
+    expose:
+      - '27017'
+    links:
+      - node1:node1
+      - node2:node2
+      - config1:config1
+    volumes:
+      - ./mongos:/data/db
+    restart: always
+    entrypoint: [ '/usr/bin/mongos', '--configdb', 'config1:27017', '--chunkSize', '1', '--port', '27017' ]
+  mongosetup:
+    image: mongo:3.2
+    expose:
+      - '27017'
+    links:
+      - node1:node1
+      - node2:node2
+      - config1:config1
+      - mongos1:mongos1
+    restart: always
+    volumes:
+      - ./mongosetup/:/data/db
