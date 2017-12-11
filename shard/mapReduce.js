@@ -25,11 +25,11 @@ db.system.js.save({
 map = function(){
 	var matches = getMatch(this);
 	emit({
-		matches:matches,
+		matches:matches
 
 	},
 	{
-		count: 1,
+		count: 1
 	});
 
 }

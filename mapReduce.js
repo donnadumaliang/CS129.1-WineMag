@@ -1,7 +1,7 @@
 db.system.js.remove({_id: "getMatch"});
  wines = db.wine_lists.find(
   {
-    description: {$in:[/Juicy/,/Rich/,/Ripe/,/Delicious/,/Balanced/,/Fresh/
+    description: {$in:[/Juicy/,/Rich/,/Ripe/,/Delicious/,/Balanced/,/Fresh/,
       /Impressive/,/Smooth/,/Silky/,/Opulent/,/Beautiful/,/Gorgeous/,
     /Wonderful/,/Exceptional/,/Polished/,/Top-notch/,/Sophisticated/,/Perfect/,
     /Decadent/,/Remarkable/,/Oaky/,/Fruity/,/Crisp/,/Soft/,/Noble/]}
@@ -16,7 +16,7 @@ db.matches.insert(wines)
 getMatch = function(wines){
   result = [];
   result = wines.country;
-  return result.
+  return result
 }
 db.system.js.save({
 	_id: 'getMatch',
@@ -25,11 +25,11 @@ db.system.js.save({
 map = function(){
 	var matches = getMatch(this);
 	emit({
-		matches:matches,
+		matches:matches
 
 	},
 	{
-		count: 1,
+		count: 1
 	});
 
 }
