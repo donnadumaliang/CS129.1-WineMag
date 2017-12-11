@@ -29,17 +29,8 @@ How to setup the Replicate sets
 			"_id": 2,
 			"host": "mongo3:27017",
 			"priority": 0
-		},
-		{
-			"_id": 3,
-			"host": "mongo4:27017",
-			"priority": 0
-		},
-		{
-			"_id": 4,
-			"host": "mongo5:27017",
-			"priority": 0
 		}
+		
 	]
 }
 rs.initiate( cfg );
