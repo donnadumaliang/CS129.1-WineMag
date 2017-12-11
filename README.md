@@ -12,7 +12,7 @@ How to setup the Replicate sets
 4. Run the following lines of code
     // 1. Setup the configuration for the replica set
   var cfg = {
-	"_id": "stock",
+	"_id": "wine",
 	"version": 1,
 	"members": [
 		{
